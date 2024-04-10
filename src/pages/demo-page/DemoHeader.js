@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
-import { Box, Button, Link } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { menu } from "../../constants";
 import CustomModal from "../../components/modal";
 
@@ -78,26 +78,34 @@ const DemoHeader = () => {
               }}
             >
               <CustomModal
+                color="black"
                 buttonTitle="Sign In"
                 onOpen={handleOpen}
                 click={open}
                 onClose={handleClose}
-
               />
             </Link>
           </Box>
-          <Button
+          <Link
             sx={{
               backgroundColor: isActive ? "#16a34a" : "black",
               color: "white",
               fontFamily: "sans-serif",
               textTransform: "capitalize",
               borderRadius: "100px",
-              px: 2,
+              "&:hover": {
+                backgroundColor: isActive ? "#22c55e" : "black",
+              },
             }}
           >
-            Get started
-          </Button>
+            <CustomModal
+              color="white"
+              buttonTitle="Get started"
+              onOpen={handleOpen}
+              click={open}
+              onClose={handleClose}
+            />
+          </Link>
         </Box>
       </Box>
     </Box>

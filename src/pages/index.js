@@ -1,18 +1,27 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  Navigate,
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import HomePage from "./home-page/HomePage";
 import DemoPage from "./demo-page/DemoPage";
 import HomeHeader from "./home-page/HomeHeader";
 import DemoHeader from "./demo-page/DemoHeader";
 
 const MainPage = () => {
-  const auth = false;
+  const currentUser = false;
   return (
     <Router>
-      {auth ? <HomeHeader /> : <DemoHeader />}
+      {currentUser ? <HomeHeader /> : <DemoHeader />}
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/demo" element={<DemoPage />} />
+        {currentUser && <Route path="/" element={<HomePage />} />}
+        {!currentUser && <Route path="/demo" element={<DemoPage />} />}
+        <Route
+          path="*"
+          element={<Navigate to={!currentUser ? "/demo" : "/"} />}
+        />
       </Routes>
     </Router>
   );

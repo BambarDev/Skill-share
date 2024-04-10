@@ -11,15 +11,17 @@ import { CloseOutlined, Google, Facebook, Email } from "@mui/icons-material";
 import SignIn from "../pages/auth-page/SignIn";
 import SignUp from "../pages/auth-page/SignUp";
 
-const CustomModal = ({ buttonTitle, onOpen, click, onClose }) => {
+const CustomModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
   const [createUser, setCreateUser] = useState(false);
   const [signReq, setSignReq] = useState("");
 
   return (
     <div>
       <Button
+        fullWidth
         sx={{
-          color: "black",
+          color: color,
+          borderRadius: "100px",
           fontFamily: "sans-serif",
           textTransform: "capitalize",
           fontSize: "15px",
@@ -102,8 +104,8 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose }) => {
                       borderRadius: "100px",
                       textTransform: "capitalize",
                       color: "black",
-                      px: 3,
-                      py: 2,
+                      px: "12px",
+                      py: "8px",
                     }}
                     // onClick={() =>
                     //   setSignReq(createUser ? "sign-up" : "sign-in")
@@ -126,8 +128,8 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose }) => {
                       border: "1px solid black",
                       color: "black",
                       borderRadius: "100px",
-                      px: 3,
-                      py: 2,
+                      px: "12px",
+                      pt: "8px",
                       textTransform: "capitalize",
                     }}
                     // onClick={() =>
@@ -151,8 +153,8 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose }) => {
                       textTransform: "capitalize",
                       border: "1px solid black",
                       borderRadius: "100px",
-                      px: 3,
-                      py: 2,
+                      px: "12px",
+                      pt: "8px",
                       color: "black",
                     }}
                     onClick={() =>
