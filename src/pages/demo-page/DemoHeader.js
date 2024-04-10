@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import { Box, Button, Link } from "@mui/material";
 import { menu } from "../../constants";
+import CustomModal from "../../components/modal";
 
 const DemoHeader = () => {
   const [isActive, setIsActive] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const scroll = () => {
     window.scrollY > 50 ? setIsActive(true) : setIsActive(false);
@@ -30,10 +34,10 @@ const DemoHeader = () => {
       <Box
         sx={{
           width: "95%",
-          ["@media (min-width:600px)"]: {
+          "@media (min-width: 600px)": {
             width: "90%",
           },
-          m: "auto",
+          margin: "auto",
           height: "70px",
           display: "flex",
           alignItems: "center",
@@ -72,9 +76,14 @@ const DemoHeader = () => {
                 gap: "20px",
                 fontFamily: "sans-serif",
               }}
-              href="/"
             >
-              Sign In
+              <CustomModal
+                buttonTitle="Sign In"
+                onOpen={handleOpen}
+                click={open}
+                onClose={handleClose}
+
+              />
             </Link>
           </Box>
           <Button
