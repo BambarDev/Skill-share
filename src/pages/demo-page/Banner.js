@@ -10,7 +10,7 @@ const Banner = () => {
         borderColor: "black",
       }}
     >
-      <Typography
+      <Box
         sx={{
           width: "95%",
           "@media (min-width: 600px)": {
@@ -72,7 +72,7 @@ const Banner = () => {
         >
           Start Reading
         </Button>
-      </Typography>
+      </Box>
     </Box>
   );
 };

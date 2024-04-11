@@ -31,7 +31,7 @@ const SignIn = ({ setSignReq }) => {
           magic link to your inbox.
         </Typography>
         <CustomTextField title="Email" />
-        <CustomTextField title="Password" />
+        <CustomTextField type="password" title="Password" />
         <Button
           variant="contained"
           sx={{
@@ -56,6 +56,7 @@ const SignIn = ({ setSignReq }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          fontFamily: "sans-serif",
           color: "#34d399",
           "&:hover": {
             color: "#22c55e",

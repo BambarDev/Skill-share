@@ -1,8 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, Button, Link } from "@mui/material";
 import CustomTextField from "../../components/textField";
+import { toast } from "react-toastify";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase/firebase";
+import { useNavigate } from "react-router-dom";
 
-const SignUp = ({ setSignReq }) => {
+const SignUp = ({ closeModal, setSignReq }) => {
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (form[("username", "email", "password", "confirmPassword")] === "") {
+      toast.error("All fields are required");
+    } else if (form["password"] !== form["confirmPassword"]) {
+      toast.error("Your passwords are not matching!!");
+      return;
+    } else {
+      // setLoading(true);
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      );
+
+      const ref = doc(db, "users", user.uid);
+      const userDoc = await getDoc(ref);
+
+      if (!userDoc.exists()) {
+        await setDoc(ref, {
+          userId: user.uid,
+          username: form.username,
+          email: form.email,
+          userImg: "",
+          bio: "",
+          created: Date.now(),
+        });
+        navigate("/");
+        toast.success("New account has been Created");
+        closeModal();
+      }
+    }
+  };
+
+  const handleChange = (field) => (e) => {
+    setForm({
+      ...form,
+      [field]: e.target.value,
+    });
+  };
+
   return (
     <>
       <Box
@@ -30,10 +85,28 @@ const SignUp = ({ setSignReq }) => {
           Enter the email address associated with your account, and we’ll send a
           magic link to your inbox.
         </Typography>
-        <CustomTextField title="Username" />
-        <CustomTextField title="Email" />
-        <CustomTextField title="Password" />
-        <CustomTextField title="Confirm password" />
+        <CustomTextField
+          title="Username"
+          value={form.username}
+          onChange={handleChange("username")}
+        />
+        <CustomTextField
+          title="Email"
+          value={form.email}
+          onChange={handleChange("email")}
+        />
+        <CustomTextField
+          type="password"
+          title="Password"
+          value={form.password}
+          onChange={handleChange("password")}
+        />
+        <CustomTextField
+          type="password"
+          title="Confirm password"
+          value={form.confirmPassword}
+          onChange={handleChange("confirmPassword")}
+        />
         <Button
           variant="contained"
           sx={{
@@ -48,6 +121,7 @@ const SignUp = ({ setSignReq }) => {
             },
             fontWeight: "bold",
           }}
+          onClick={handleSubmit}
         >
           Sign Up
         </Button>
@@ -57,6 +131,7 @@ const SignUp = ({ setSignReq }) => {
         sx={{
           display: "flex",
           alignItems: "center",
+          fontFamily: "sans-serif",
           justifyContent: "center",
           color: "#34d399",
           "&:hover": {

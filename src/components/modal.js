@@ -24,6 +24,7 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
 
   const closeModal = () => {
     setShowModal(false);
+    onClose();
   };
 
   const googleAuth = async () => {
@@ -52,7 +53,7 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
   };
 
   return (
-    <div>
+    <Box>
       <Button
         fullWidth
         sx={{
@@ -104,7 +105,7 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
             >
               <CloseOutlined />
             </IconButton>
-            <Typography
+            <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -115,10 +116,10 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
             >
               {signReq === "" ? (
                 <>
-                  <Box sx={{ fontSize: "24px", pt: "80px" }}>
+                  <Typography sx={{ fontSize: "24px", pt: "80px" }}>
                     {createUser ? "Join Medium" : "Welcome Back"}
-                  </Box>
-                  <Box
+                  </Typography>
+                  <Typography
                     sx={{
                       display: "flex",
                       flexDirection: "column",
@@ -200,8 +201,8 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
                     >
                       {`${createUser ? "Sign up" : "Sign in"} with email`}
                     </Button>
-                  </Box>
-                  <Box>
+                  </Typography>
+                  <Typography>
                     {createUser ? "Already have an account" : "No Account"}
                     <Link
                       underline="none"
@@ -218,8 +219,8 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
                     >
                       {createUser ? "Sign in" : "Sign up"}
                     </Link>
-                  </Box>
-                  <Box
+                  </Typography>
+                  <Typography
                     sx={{
                       width: "100%",
                       maxWidth: "480px",
@@ -233,18 +234,18 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
                     Click "{createUser ? "Sign in" : "Sign up"}" to agree to
                     Medium’s Terms of Service and acknowledge that Medium’s
                     Privacy Policy applies to you.
-                  </Box>
+                  </Typography>
                 </>
               ) : signReq === "sign-in" ? (
-                <SignIn setSignReq={setSignReq} />
+                <SignIn setSignReq={setSignReq} closeModal={closeModal} />
               ) : signReq === "sign-up" ? (
-                <SignUp setSignReq={setSignReq} />
+                <SignUp setSignReq={setSignReq} closeModal={closeModal} />
               ) : null}
-            </Typography>
+            </Box>
           </Box>
         </Modal>
       )}
-    </div>
+    </Box>
   );
 };
 

@@ -1,16 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import MainPage from "./pages";
 import Context from "./context/context";
+import "react-toastify/dist/ReactToastify.css";
 
-ReactDOM.render(
+// Select the root element
+const rootElement = document.getElementById("root");
+
+// Create a root
+const root = createRoot(rootElement);
+
+// Render your app component
+root.render(
   <React.StrictMode>
     <Context>
       <MainPage />
     </Context>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
