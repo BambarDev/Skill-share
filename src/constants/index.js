@@ -12,3 +12,28 @@ export const menu = [
     path: "/",
   },
 ];
+
+export const category = [
+  "Technology",
+  "Study",
+  "Programming",
+  "Sport",
+  "Knowledge",
+  "Self Improvement",
+  "Relationships",
+  "Machine Learning",
+  "Politics",
+];
+
+export const categoryActions = [
+  "Help",
+  "Status",
+  "Writers",
+  "Blog",
+  "Careers",
+  "Privacy",
+  "Terms",
+  "About",
+  "Text to speech",
+  "Teams",
+];

@@ -1,0 +1,87 @@
+import React from "react";
+import { Box, Typography } from "@mui/material";
+
+const Posts = () => {
+  return (
+    <Box>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+      <Typography>Posts</Typography>
+    </Box>
+  );
+};
+
+export default Posts;
