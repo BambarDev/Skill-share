@@ -9,9 +9,10 @@ import HomePage from "./home-page/HomePage";
 import DemoPage from "./demo-page/DemoPage";
 import HomeHeader from "./home-page/HomeHeader";
 import DemoHeader from "./demo-page/DemoHeader";
+import { Blog } from "../context/context";
 
 const MainPage = () => {
-  const currentUser = false;
+  const { currentUser } = Blog();
   return (
     <Router>
       {currentUser ? <HomeHeader /> : <DemoHeader />}
