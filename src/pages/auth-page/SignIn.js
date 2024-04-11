@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, Button, Link } from "@mui/material";
 import CustomTextField from "../../components/textField";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = ({ setSignReq }) => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (field) => (event) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      [field]: event.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (form[("email", "password")] === "") {
+      toast.error("All fields are required!!!");
+    }
+
+    try {
+      setLoading(true);
+      await signInWithEmailAndPassword(auth, form.email, form.password);
+      navigate("/");
+      toast.success("User has been logged in ");
+      setLoading(false);
+    } catch (error) {
+      toast.error(error.message);
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Box
@@ -30,8 +66,17 @@ const SignIn = ({ setSignReq }) => {
           Enter the email address associated with your account, and we’ll send a
           magic link to your inbox.
         </Typography>
-        <CustomTextField title="Email" />
-        <CustomTextField type="password" title="Password" />
+        <CustomTextField
+          value={form.email}
+          onChange={handleChange("email")}
+          title="Email"
+        />
+        <CustomTextField
+          value={form.password}
+          onChange={handleChange("password")}
+          type="password"
+          title="Password"
+        />
         <Button
           variant="contained"
           sx={{
@@ -45,7 +90,10 @@ const SignIn = ({ setSignReq }) => {
               backgroundColor: "#22c55e",
             },
             fontWeight: "bold",
+            opacity: loading ? 0.5 : 1,
+            pointerEvents: loading ? "none" : "auto",
           }}
+          onClick={handleSubmit}
         >
           Sign In
         </Button>

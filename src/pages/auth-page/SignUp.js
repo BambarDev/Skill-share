@@ -8,6 +8,7 @@ import { auth, db } from "../../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = ({ closeModal, setSignReq }) => {
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -25,7 +26,7 @@ const SignUp = ({ closeModal, setSignReq }) => {
       toast.error("Your passwords are not matching!!");
       return;
     } else {
-      // setLoading(true);
+      setLoading(true);
       const { user } = await createUserWithEmailAndPassword(
         auth,
         form.email,
@@ -42,11 +43,11 @@ const SignUp = ({ closeModal, setSignReq }) => {
           email: form.email,
           userImg: "",
           bio: "",
-          created: Date.now(),
         });
         navigate("/");
         toast.success("New account has been Created");
         closeModal();
+        setLoading(false);
       }
     }
   };
@@ -120,6 +121,8 @@ const SignUp = ({ closeModal, setSignReq }) => {
               backgroundColor: "#22c55e",
             },
             fontWeight: "bold",
+            opacity: loading ? 0.5 : 1,
+            pointerEvents: loading ? "none" : "auto",
           }}
           onClick={handleSubmit}
         >
