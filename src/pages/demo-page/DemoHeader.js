@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import { Box, Link } from "@mui/material";
 import { menu } from "../../constants";
-import CustomModal from "../../components/modal";
+import AuthModal from "../../components/authModal";
 
 const DemoHeader = () => {
   const [isActive, setIsActive] = useState(false);
@@ -77,7 +77,7 @@ const DemoHeader = () => {
                 fontFamily: "sans-serif",
               }}
             >
-              <CustomModal
+              <AuthModal
                 color="black"
                 buttonTitle="Sign In"
                 onOpen={handleOpen}
@@ -98,7 +98,7 @@ const DemoHeader = () => {
               },
             }}
           >
-            <CustomModal
+            <AuthModal
               color="white"
               buttonTitle="Get started"
               onOpen={handleOpen}

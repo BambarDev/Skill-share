@@ -16,7 +16,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const CustomModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
+const AuthModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
   const [createUser, setCreateUser] = useState(false);
   const [showModal, setShowModal] = useState(true);
   const [signReq, setSignReq] = useState("");
@@ -249,4 +249,4 @@ const CustomModal = ({ buttonTitle, onOpen, click, onClose, color }) => {
   );
 };
 
-export default CustomModal;
+export default AuthModal;
