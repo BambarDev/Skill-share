@@ -6,7 +6,6 @@ import {
   Box,
   Link,
   TextField,
-  InputAdornment,
   Typography,
   Avatar,
   Menu,
@@ -25,7 +24,6 @@ import { secretEmail } from "../../../components/helper";
 
 const HomeHeader = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -93,29 +91,46 @@ const HomeHeader = () => {
           <Link href="/">
             <img style={{ height: "70px" }} src={Logo} alt="Blog logo" />
           </Link>
-          <TextField
-            variant="standard"
-            size="small"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={handleSearchChange}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-              disableUnderline: true,
-            }}
+          <Box
             sx={{
-              backgroundColor: "grey.200", // Set gray background color
-              borderRadius: "100px",
-              px: "12px",
-              py: "5px",
-              alignItems: "center",
-              justifyContent: "center",
+              position: "absolute",
+              right: "16px",
+              left: "16px",
+              top: "64px",
+              "@media (min-width: 600px)": {
+                position: "relative",
+                left: "0",
+                top: "0",
+              },
             }}
-          />
+          >
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "flex",
+                },
+                alignItems: "center",
+                gap: "4px",
+                position: "relative",
+                backgroundColor: "grey.100",
+                padding: "8px",
+                borderRadius: "50px",
+              }}
+            >
+              <Search sx={{ fontSize: "24px", color: "grey.400" }} />
+              <TextField
+                variant="standard"
+                size="small"
+                placeholder="Search"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                InputProps={{
+                  disableUnderline: true,
+                }}
+              />
+            </Box>
+          </Box>
         </Box>
         <Box
           sx={{
@@ -149,6 +164,19 @@ const HomeHeader = () => {
             <Create sx={{ fontSize: "24px" }} />
             <Typography sx={{ fontSize: "14px" }}>Write</Typography>
           </Link>
+
+          <Search
+            sx={{
+              display: {
+                xs: "flex",
+                md: "none",
+              },
+              fontSize: "30px",
+              color: "black",
+              cursor: "pointer",
+            }}
+          />
+
           <NotificationsActiveOutlined
             sx={{ fontSize: "30px", cursor: "pointer" }}
           />
@@ -162,13 +190,6 @@ const HomeHeader = () => {
             />
 
             <Menu
-              sx={{
-                display: {
-                  xs: "node",
-                  md: "flex",
-                },
-              }}
-              id="profile-menu"
               anchorEl={anchorEl}
               keepMounted
               open={Boolean(anchorEl)}
@@ -197,10 +218,7 @@ const HomeHeader = () => {
                   <Link
                     underline="none"
                     sx={{
-                      display: {
-                        xs: "none",
-                        md: "flex",
-                      },
+                      display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       fontFamily: "sans-serif",
