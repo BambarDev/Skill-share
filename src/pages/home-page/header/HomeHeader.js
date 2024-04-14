@@ -23,8 +23,11 @@ import {
 import { secretEmail } from "../../../components/helper";
 
 const HomeHeader = () => {
+  const { allUsers, currentUser } = Blog();
   const [searchQuery, setSearchQuery] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const getUserData = allUsers.find((user) => user.id === currentUser?.uid);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -38,7 +41,6 @@ const HomeHeader = () => {
     setSearchQuery(event.target.value);
   };
 
-  const { currentUser } = Blog();
   const user = [
     {
       title: "Profile",
@@ -89,7 +91,11 @@ const HomeHeader = () => {
           }}
         >
           <Link href="/">
-            <img style={{ height: "70px" }} src={Logo} alt="Blog logo" />
+            <img
+              style={{ height: "70px" }}
+              src={getUserData?.userImg ? getUserData?.userImg : Logo}
+              alt="Blog logo"
+            />
           </Link>
           <Box
             sx={{

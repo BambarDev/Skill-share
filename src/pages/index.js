@@ -11,6 +11,7 @@ import DemoHeader from "./demo-page/DemoHeader";
 import { Blog } from "../context/context";
 import { ToastContainer } from "react-toastify";
 import HomeHeader from "./home-page/header/HomeHeader";
+import Profile from "./home-page/profile/Profile";
 
 const MainPage = () => {
   const { currentUser } = Blog();
@@ -21,6 +22,7 @@ const MainPage = () => {
       <Routes>
         {currentUser && <Route path="/" element={<HomePage />} />}
         {!currentUser && <Route path="/demo" element={<DemoPage />} />}
+        <Route path="/profile/:userId" element={<Profile/>}/>
         <Route
           path="*"
           element={<Navigate to={!currentUser ? "/demo" : "/"} />}
