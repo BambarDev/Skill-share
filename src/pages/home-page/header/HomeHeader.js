@@ -21,11 +21,14 @@ import {
   SignalCellularAlt,
 } from "@mui/icons-material";
 import { secretEmail } from "../../../components/helper";
+import { useLocation } from "react-router-dom";
 
 const HomeHeader = () => {
-  const { allUsers, currentUser } = Blog();
+  const { allUsers, currentUser, setPublish } = Blog();
   const [searchQuery, setSearchQuery] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
+  const { pathname } = useLocation();
+  console.log(pathname);
 
   const getUserData = allUsers.find((user) => user.id === currentUser?.uid);
 
@@ -63,6 +66,7 @@ const HomeHeader = () => {
       path: "/stats",
     },
   ];
+
   return (
     <Box
       sx={{
@@ -148,28 +152,50 @@ const HomeHeader = () => {
             },
           }}
         >
-          <Link
-            underline="none"
-            sx={{
-              display: {
-                xs: "none",
-                md: "flex",
-              },
-              alignItems: "center",
-              justifyContent: "center",
-              fontFamily: "sans-serif",
-              color: "black",
-              "&:hover": {
-                color: "#232427",
-              },
-              fontWeight: "bold",
-              gap: "12px",
-            }}
-            href="/write"
-          >
-            <Create sx={{ fontSize: "24px" }} />
-            <Typography sx={{ fontSize: "14px" }}>Write</Typography>
-          </Link>
+          {pathname === "/write" ? (
+            <Link
+              underline="none"
+              sx={{
+                px: "20px",
+                py: "10px",
+                color: "white",
+                cursor: "pointer",
+                borderRadius: "100px",
+                fontFamily: "sans-serif",
+                backgroundColor: "#16a34a",
+                textTransform: "capitalize",
+                "&:hover": {
+                  backgroundColor: "#22c55e",
+                },
+              }}
+              onClick={() => setPublish(true)}
+            >
+              Publish
+            </Link>
+          ) : (
+            <Link
+              underline="none"
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "flex",
+                },
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: "sans-serif",
+                color: "black",
+                "&:hover": {
+                  color: "#232427",
+                },
+                fontWeight: "bold",
+                gap: "12px",
+              }}
+              href="/write"
+            >
+              <Create sx={{ fontSize: "24px" }} />
+              <Typography sx={{ fontSize: "14px" }}>Write</Typography>
+            </Link>
+          )}
 
           <Search
             sx={{

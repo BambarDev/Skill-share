@@ -4,6 +4,7 @@ import reportWebVitals from "./reportWebVitals";
 import MainPage from "./pages";
 import Context from "./context/context";
 import "react-toastify/dist/ReactToastify.css";
+import "react-tagsinput/react-tagsinput.css";
 
 // Select the root element
 const rootElement = document.getElementById("root");

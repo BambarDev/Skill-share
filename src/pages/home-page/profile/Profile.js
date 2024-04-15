@@ -72,6 +72,7 @@ const Profile = () => {
             sx={{
               color: "grey.500",
               fontSize: "12px",
+              mt: "23px",
               "@media (min-width: 640px)": {
                 fontSize: "14px",
               },
@@ -79,17 +80,18 @@ const Profile = () => {
           >
             Followers(2)
           </Typography>
-          <Typography
+          <Box
             sx={{
               color: "grey.500",
               fontSize: "12px",
+              mt: "23px",
               "@media (min-width: 640px)": {
                 fontSize: "14px",
               },
             }}
           >
             Followings(4)
-          </Typography>
+          </Box>
         </Box>
         <Box
           sx={{
