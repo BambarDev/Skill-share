@@ -12,7 +12,7 @@ const ProfileAbout = ({ getUserData }) => {
           },
         }}
       >
-        {getUserData?.bio || getUserData?.username + " Has no bio"}
+        {getUserData?.bio || getUserData?.username + " has no bio"}
       </Typography>
     </Box>
   );

@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import Logo from "../../../assets/logo.png";
 import Profile from "../../../assets/profile.jpg";
 import { Blog } from "../../../context/context";
-import {
-  Box,
-  Link,
-  TextField,
-  Typography,
-  Avatar,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+import { Box, Link, TextField, Typography, Avatar, Menu } from "@mui/material";
 import {
   Search,
   Create,
@@ -236,15 +228,20 @@ const HomeHeader = () => {
               }}
             >
               {user.map((item, i) => (
-                <MenuItem
+                <Box
                   key={i}
                   onClick={handleClose}
                   sx={{
+                    display: "flex",
+                    justifyContent: "flex-start",
                     p: "10px",
                     width: "288px",
                     borderBottom: i === user.length - 1 ? 1 : 0,
                     borderColor: "grey.300",
                     pl: "24px",
+                    "&:hover": {
+                      backgroundColor: "grey.300",
+                    },
                   }}
                 >
                   <Link
@@ -255,16 +252,13 @@ const HomeHeader = () => {
                       justifyContent: "center",
                       fontFamily: "sans-serif",
                       color: "black",
-                      "&:hover": {
-                        color: "#232427",
-                      },
                       gap: "12px",
                     }}
                     href={item.path}
                   >
                     {item.icon} {item.title}
                   </Link>
-                </MenuItem>
+                </Box>
               ))}
               <Link
                 underline="none"

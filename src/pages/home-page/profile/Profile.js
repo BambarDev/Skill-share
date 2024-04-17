@@ -28,7 +28,6 @@ const Profile = () => {
   const [currentActive, setCurrentActive] = useState(activities[0]);
 
   const getUserData = allUsers.find((user) => user.id === userId);
-  console.log(getUserData);
 
   return (
     <Box
@@ -203,7 +202,7 @@ const Profile = () => {
                   fontFamily: "sans-serif",
                   color: "#232427",
                   cursor: "pointer",
-                  fontSize: "16px",
+                  fontSize: "11px",
                   py: "12px",
                   "&:hover": {
                     color: "#232427",
