@@ -13,7 +13,10 @@ import {
   SignalCellularAlt,
 } from "@mui/icons-material";
 import { secretEmail } from "../../../components/helper";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firebase/firebase";
+import { toast } from "react-toastify";
 
 const HomeHeader = () => {
   const { allUsers, currentUser, setPublish } = Blog();
@@ -58,6 +61,17 @@ const HomeHeader = () => {
       path: "/stats",
     },
   ];
+
+  const navigate = useNavigate(null);
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/demo");
+      toast.success("User has be logged out");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <Box
@@ -275,7 +289,9 @@ const HomeHeader = () => {
                   cursor: "pointer",
                 }}
               >
-                <Box sx={{ pb: "12px" }}>Sign Out</Box>
+                <Box sx={{ pb: "12px" }} onClick={logout}>
+                  Sign Out
+                </Box>
                 <Box sx={{ fontSize: "14px" }}>
                   {secretEmail(currentUser?.email)}
                 </Box>

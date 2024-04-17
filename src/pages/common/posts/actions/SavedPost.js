@@ -10,11 +10,7 @@ import useSingleFetch from "../../../../hook/useSingleFetch";
 const SavedPost = ({ post }) => {
   const [isSaved, setIsSaved] = useState(false);
   const { currentUser } = Blog();
-  const { data, loading } = useSingleFetch(
-    "users",
-    currentUser?.uid,
-    "savePost"
-  );
+  const { data, loading } = useSingleFetch("users", post?.userId, "savePost");
 
   useEffect(() => {
     setIsSaved(data && data.find((item) => item.id === post.id));

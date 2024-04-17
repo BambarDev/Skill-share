@@ -7,6 +7,7 @@ import ProfileAbout from "./activities/ProfileAbout";
 import { categoryActions } from "../../../constants";
 import { Blog } from "../../../context/context";
 import { useParams } from "react-router-dom";
+import useSingleFetch from "../../../hook/useSingleFetch";
 
 const Profile = () => {
   const { allUsers } = Blog();
@@ -29,6 +30,9 @@ const Profile = () => {
 
   const getUserData = allUsers.find((user) => user.id === userId);
 
+  const { data: follows } = useSingleFetch("users", userId, "follows");
+  const { data: followers } = useSingleFetch("users", userId, "followers");
+  console.log(followers, follows);
   return (
     <Box
       sx={{
@@ -71,25 +75,27 @@ const Profile = () => {
             sx={{
               color: "grey.500",
               fontSize: "12px",
+              fontFamily: "sans-serif",
               mt: "23px",
               "@media (min-width: 640px)": {
                 fontSize: "14px",
               },
             }}
           >
-            Followers(2)
+            Followers({followers.length})
           </Typography>
           <Box
             sx={{
               color: "grey.500",
               fontSize: "12px",
+              fontFamily: "sans-serif",
               mt: "23px",
               "@media (min-width: 640px)": {
                 fontSize: "14px",
               },
             }}
           >
-            Followings(4)
+            Followings({follows.length})
           </Box>
         </Box>
         <Box
