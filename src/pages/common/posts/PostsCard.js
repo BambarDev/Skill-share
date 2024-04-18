@@ -7,12 +7,15 @@ import SavedPost from "./actions/SavedPost";
 import { Blog } from "../../../context/context";
 // import Loading from "../../loading/Loading";
 import Actions from "./actions/Actions";
+import { useNavigate } from "react-router-dom";
 
 const PostsCard = ({ post }) => {
   const { title, desc, created, postImg, id: postId, userId } = post;
   const { data, loading } = useFetch("users");
   const { currentUser } = Blog();
   const getUserData = data && data?.find((user) => user?.id === userId);
+
+  const navigate = useNavigate();
 
   return (
     <Card
@@ -25,7 +28,7 @@ const PostsCard = ({ post }) => {
       }}
     >
       <Box sx={{ flex: "2", display: "flex", flexDirection: "column" }}>
-        <CardContent>
+        <CardContent onClick={() => navigate(`/post/${postId}`)}>
           <Typography
             component="div"
             variant="h5"

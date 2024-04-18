@@ -13,6 +13,7 @@ import { ToastContainer } from "react-toastify";
 import HomeHeader from "./home-page/header/HomeHeader";
 import Profile from "./home-page/profile/Profile";
 import Write from "./home-page/write/Write";
+import SinglePost from "./common/posts/SinglePost";
 
 const MainPage = () => {
   const { currentUser } = Blog();
@@ -25,6 +26,7 @@ const MainPage = () => {
         {!currentUser && <Route path="/demo" element={<DemoPage />} />}
         <Route path="/profile/:userId" element={<Profile />} />
         <Route path="/write" element={<Write />} />
+        <Route path="/post/:postId" element={<SinglePost />} />
         <Route
           path="*"
           element={<Navigate to={!currentUser ? "/demo" : "/"} />}
